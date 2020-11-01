@@ -7,6 +7,10 @@ from FlightSpec import isFourthDigitValid
 from FlightSpec import isFifthDigitValid
 from FlightSpec import isSixthDigitValid
 from FlightSpec import isSeventhDigitValid
+from FlightSpec import isNinthDigitValid
+from FlightSpec import isTenthDigitValid
+from FlightSpec import isEleventhDigitValid
+from FlightSpec import isTwelveDigitValid
 
 
 
@@ -56,11 +60,45 @@ class FlightSpecTest(unittest.TestCase):
         result = isSixthDigitValid('ABC 456789AB')
         self.assertFalse(result, 'The sixth digit needs to have a space')
 
-    def test_validSeventhandEighthChar(self):
+    def test_validSeventhAndEighthChar(self):
         result = isSeventhDigitValid('ABC 456789AB')
         self.assertTrue(result, 'The seven and eighth digit is valid')
 
+    def test_validSeventhAndEighthZeroChar(self):
+        result = isSeventhDigitValid('ABC 111009AB')
+        self.assertTrue(result, 'The seven and eighth digit is valid')
 
+    def test_validSeventhAndEighthNineChar(self):
+        result = isSeventhDigitValid('ABC 111999AB')
+        self.assertTrue(result, 'The seven and eighth digit is valid')
+
+    def test_invalidSeventhAndEighthChar(self):
+        result = isSeventhDigitValid('ABC 456AB89AB')
+        self.assertTrue(result, 'The seven and eighth digit is valid')
+    
+    def test_validNinthChar(self):
+        result = isTenthDigitValid('ABC 456ANN9AB')
+        self.assertTrue(result, 'The ninth digit is valid')
+    
+    def test_validTenthChar(self):
+        result = isTenthDigitValid('ABC 456ANB9AB')
+        self.assertFalse(result, 'The tenth digit is invalid')
+
+    def test_validEleventhChar(self):
+        result = isEleventhDigitValid('ABC 456ANB AB')
+        self.assertTrue(result, 'The eleventh digit is valid')
+    
+    def test_invalidEleventhChar(self):
+        result = isEleventhDigitValid('ABC 456ANBAB')
+        self.assertFalse(result, 'The eleventh digit is invalid')
+    
+    def test_validTwelvethChar(self):
+        result = isTwelveDigitValid('ABC 456ANBAE')
+        self.assertTrue(result, 'The twelveth digit is valid')
+
+    def test_invalidTwelvethChar(self):
+        result = isTwelveDigitValid('ABC 456ANBAS')
+        self.assertFalse(result, 'The twelveth digit is invalid')
 
 if __name__ == '__main__':
     unittest.main()
