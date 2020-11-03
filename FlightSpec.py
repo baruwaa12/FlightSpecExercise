@@ -73,13 +73,14 @@ def isValidSpec(flightSpec):
 
 ## Part A - User Input and Flight Destination
 
-
 flightSpec = str(input("Please enter a flight specfication?"))
+
+
 if isFirstThreeDigitsValid(flightSpec) == "GLA":
-    FlightCost = 80
+    FlightCost = 80.00
     destination = "Glasgow, Scotland"
 else:
-    FlightCost = 150
+    FlightCost = 150.00 
     destination = "Schinphol, Amsterdam"
     print(destination)
 
@@ -89,31 +90,57 @@ else:
 if isFifthDigitValid(flightSpec) == True:
     totalBags = int(flightSpec[4])
     if totalBags > 0:
-        BaggageCost = 20 * (totalBags - 1)
+        BaggageCost = 20.00 * (totalBags - 1)
         print(BaggageCost)
     else:
         BaggageCost = 0
         print(BaggageCost)
 
 
-
 ## Part C - Child Discounts
 
+Child = bool
 if isSeventhDigitValid(flightSpec) == True:
-    if flightSpec[6:7] <= 15:
-        Discounts = -2.50
+    if int(flightSpec[6:7]) <= 15:
+        Discounts = (2.5 + FlightCost/2)
+        Child(True)
     else:
         Discounts = 0 
+        Child(False)
 
 ## Part D - Meals
 if isTenthDigitValid(flightSpec) == True:
     MealType = flightSpec[9]
     if MealType == 'S':
-        MealCost = 10
+        Meal = 'Standard'
+        MealCost = 10.00
     elif MealType == 'V':
-        MealCost = 15
+        MealCost = 12.00
+        Meal = 'Vegetarian'
     else:
         MealCost = 0
 
+## Part E - Seating Class
 
-  
+if isEleventhDigitValid(flightSpec) == True:
+    if flightSpec[11] == 'E':
+        SeatingClass = 'Economy'
+        SeatingCost = 0
+        Final_Cost = (FlightCost + BaggageCost + MealCost + SeatingCost) - Discounts
+    else:
+        SeatingClass = 'First Class'
+        MealCost = 0
+        Final_Cost = ((FlightCost * 6) + BaggageCost + MealCost + SeatingCost) - Discounts
+
+
+
+
+print("Destination: " + str(destination))
+print("Flight Cost: " + str(FlightCost))
+print("Number of Bags: " + str(totalBags))
+print("Baggage Cost: " + str(BaggageCost))
+print("Child: " + str(Child))
+print("Meal: " + str(MealType))
+print("Meal Cost: " + str(MealCost))
+print("Seating Class: " + str(SeatingClass))
+print("Total Cost: " + str(Final_Cost))
