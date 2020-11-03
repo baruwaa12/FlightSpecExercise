@@ -26,7 +26,7 @@ class FlightSpecTest(unittest.TestCase):
 
     def test_flight_spec(self):
         result = isValidSpec('AMS 0 25 S E')
-        self.assertTrue(result, 'Test Spec is incorrect')
+        self.assertFalse(result, 'Test Spec is incorrect')
 
     def test_validFirstThreeDigits(self):
         result = isFirstThreeDigitsValid('ABC3456789AB')

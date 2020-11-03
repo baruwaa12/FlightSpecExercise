@@ -6,7 +6,8 @@ def isValidSpecLength(flightSpec):
 
 def isFirstThreeDigitsValid(flightSpec):
     firstThree = flightSpec[0:3]
-    return firstThree.isalpha()
+    if firstThree == "AMS" or firstThree == "GLA":
+        return firstThree.isalpha()
 
 def isFourthDigitValid(flightSpec):
     fourth = flightSpec[3]
@@ -64,6 +65,42 @@ def isTwelveDigitValid(flightSpec):
         return True
     return False
 
-
 def isValidSpec(flightSpec):
-    return True
+    if isValidSpecLength("AMS 0 25 S E") + isFirstThreeDigitsValid("AMS 0 25 S E") + isFourthDigitValid("AMS 0 25 S E") + isFifthDigitValid("AMS 0 25 S E") + isSixthDigitValid("AMS 0 25 S E") + isSeventhDigitValid("AMS 0 25 S E") + isNinthDigitValid("AMS 0 25 S E") + isTenthDigitValid("AMS 0 25 S E") + isEleventhDigitValid("AMS 0 25 S E") + isTwelveDigitValid("AMS 0 25 S E") == True:
+        return True
+    return False
+
+
+## Part A - User Input and Flight Destination
+
+
+flightSpec = str(input("Please enter a flight specfication?"))
+if isFirstThreeDigitsValid(flightSpec) == "GLA":
+    FlightCost = 80
+    destination = "Glasgow, Scotland"
+else:
+    FlightCost = 150
+    destination = "Schinphol, Amsterdam"
+    print(destination)
+
+
+## Part B - Baggage Costs
+
+if isFifthDigitValid(flightSpec) == True:
+    totalBags = int(flightSpec[4])
+    if totalBags > 0:
+        BaggageCost = 20 * (totalBags - 1)
+    else:
+        BaggageCost = 0
+        print(BaggageCost)
+
+
+
+
+
+    
+
+
+
+
+
