@@ -90,17 +90,30 @@ if isFifthDigitValid(flightSpec) == True:
     totalBags = int(flightSpec[4])
     if totalBags > 0:
         BaggageCost = 20 * (totalBags - 1)
+        print(BaggageCost)
     else:
         BaggageCost = 0
         print(BaggageCost)
 
 
 
+## Part C - Child Discounts
+
+if isSeventhDigitValid(flightSpec) == True:
+    if flightSpec[6:7] <= 15:
+        Discounts = -2.50
+    else:
+        Discounts = 0 
+
+## Part D - Meals
+if isTenthDigitValid(flightSpec) == True:
+    MealType = flightSpec[9]
+    if MealType == 'S':
+        MealCost = 10
+    elif MealType == 'V':
+        MealCost = 15
+    else:
+        MealCost = 0
 
 
-    
-
-
-
-
-
+  
