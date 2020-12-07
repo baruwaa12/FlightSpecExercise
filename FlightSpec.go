@@ -2,6 +2,7 @@ package flightSpecExercise
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // SpecLength to find the length of the Spec string
@@ -23,4 +24,16 @@ func LocationFinder(input string) string {
 		fmt.Println(location)
 	}
 	return location
+}
+
+func PassengerAge(input string) int {
+	age := input[6:7]
+	Age, _ := strconv.Atoi(age)
+	if Age < 0 {
+		fmt.Println("Not possible")
+	}
+	if Age > 99 {
+		fmt.Println("Not possible")
+	}
+	return Age
 }
