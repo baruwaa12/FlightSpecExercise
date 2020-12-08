@@ -26,8 +26,10 @@ func LocationFinder(input string) string {
 	return location
 }
 
+// PassengerAge function makes sure the age is between 0 and 99
 func PassengerAge(input string) int {
-	age := input[6:7]
+	age := input[6:8]
+	fmt.Println(age)
 	Age, _ := strconv.Atoi(age)
 	if Age < 0 {
 		fmt.Println("Not possible")
@@ -37,3 +39,22 @@ func PassengerAge(input string) int {
 	}
 	return Age
 }
+
+func PassengerMeal(input string) string {
+	Meal := input[9]
+	if Meal == 'S' {
+		Meal := "Standard"
+		return Meal
+	}
+	if Meal == 'N'{
+		Meal := "None"
+		return Meal
+	}
+	if Meal == 'V' {
+		Meal := "Vegetarian"
+		return Meal
+	}else{
+		return "This symbol does not represent any meal"
+	}
+}
+

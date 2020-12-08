@@ -32,3 +32,12 @@ func TestPassengerAge(t * testing.T) {
 	}
 }
 
+func TestPassengerMeal(t * testing.T) {
+	for _, test := range testCases {
+		if actual := PassengerMeal(test.input); actual != test.meal {
+			t.Fatalf("FAIL [%s]", test.description)
+		}
+		t.Logf("PASS: %s", test.description)
+	}
+}
+
