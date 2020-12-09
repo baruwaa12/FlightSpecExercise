@@ -9,6 +9,7 @@ var testCases = []struct {
 	age 		int
 	meal    	string
 	expected 	bool
+	seating 	string
 }{
 	{	
 		description: "Amsterdam Flight Spec",
@@ -17,6 +18,7 @@ var testCases = []struct {
 		location:	 "Amsterdam",
 		age:		 25,
 		meal:		 "Standard",
+		seating:  	 "Economy",
 		expected:	 true,
 	},
 	{
@@ -25,24 +27,27 @@ var testCases = []struct {
 		location:	 "Glasgow",
 		age:		 15,
 		meal: 		 "Vegetarian",
+		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 true,
 	},
 	{
 		description: "Spec of incorrect length GLA",
-		input:		 "GLA 1 15 VE",
+		input:		 "GLA 1 15 V E",
 		location:    "Glasgow",
 		age: 		 15,
 		meal:		 "Vegetarian",
+		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
 	},
 	{
 		description: "Spec Location Incorrect",
-		input:		 "GLA 1 35 NE",
+		input:		 "GLA 1 35 N E",
 		location:    "London",
 		age:		 35,
 		meal:		 "None",
+		seating:	 "Economy",
 		length:	 	 11,
 		expected:	 false,
 	},
@@ -52,6 +57,7 @@ var testCases = []struct {
 		location:    "Glasgow",
 		age:		 -1,
 		meal:		 "Vegetarian",
+		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
 	},
@@ -61,6 +67,7 @@ var testCases = []struct {
 		location:    "Glasgow",
 		age:		 50,
 		meal:	     "Vegetarian",
+		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
 	},
@@ -70,6 +77,7 @@ var testCases = []struct {
 		location:    "Glasgow",
 		age:		 50,
 		meal: 		 "None",
+		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
 	},
@@ -79,6 +87,7 @@ var testCases = []struct {
 		location:    "Glasgow",
 		age:		 50,
 		meal: 		 "Standard",
+		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
 	},
@@ -88,8 +97,42 @@ var testCases = []struct {
 		location:    "Glasgow",
 		age:		 50,
 		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
 	},
+	{
+		description: "Economy symbol for economy class seating test",
+		input:		 "GLA 1 50 F E",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal ",
+		seating:  	 "Economy",
+		length:	 	 12,
+		expected:	 false,
+	},
+	{
+		description: "First class symbol for first class seating test",
+		input:		 "GLA 1 50 F F",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "First Class",
+		length:	 	 12,
+		expected:	 false,
+	},
+	{
+		description: "Incorrect symbol for seating class",
+		input:		 "GLA 1 50 F D",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 12,
+		expected:	 false,
+	},
+	
+	
+
 
 }

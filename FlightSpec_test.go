@@ -41,3 +41,11 @@ func TestPassengerMeal(t * testing.T) {
 	}
 }
 
+func TestPassengerSeatClass(t * testing.T) {
+	for _, test := range testCases {
+		if actual := PassengerSeatClass(test.input); actual != test.seating {
+			t.Fatalf("FAIL [%s]", test.description)
+		}
+		t.Logf("PASS: %s", test.description)
+	}
+}

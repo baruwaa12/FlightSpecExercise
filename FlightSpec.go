@@ -40,6 +40,7 @@ func PassengerAge(input string) int {
 	return Age
 }
 
+// PassengerMeal function determines whether the spec has one of these symbols.
 func PassengerMeal(input string) string {
 	Meal := input[9]
 	if Meal == 'S' {
@@ -56,5 +57,19 @@ func PassengerMeal(input string) string {
 	}else{
 		return "This symbol does not represent any meal"
 	}
+}
+
+// PassengerSeatClass determines if seat in the spec is either economy or first class
+func PassengerSeatClass(input string) string {
+	SeatClass := input[11]
+	if SeatClass == 'E' {
+		SeatClass := "Economy"
+		return SeatClass
+	}
+	if SeatClass  == 'F' {
+		SeatClass := "First Class"
+		return SeatClass
+	}
+	return "This is not a valid class"
 }
 
