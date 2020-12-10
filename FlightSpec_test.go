@@ -49,3 +49,13 @@ func TestPassengerSeatClass(t * testing.T) {
 		t.Logf("PASS: %s", test.description)
 	}
 }
+
+func TestPassengerBaggage(t * testing.T) {
+	for _, test := range testCases {
+		if actual := PassengerBaggage(test.input); actual != test.baggage {
+			t.Fatalf("FAIL [%s]", test.description)
+		}
+		t.Logf("PASS: %s", test.description)
+	}
+}
+

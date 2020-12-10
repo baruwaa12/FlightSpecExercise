@@ -10,6 +10,7 @@ var testCases = []struct {
 	meal    	string
 	expected 	bool
 	seating 	string
+	baggage 	int
 }{
 	{	
 		description: "Amsterdam Flight Spec",
@@ -20,56 +21,64 @@ var testCases = []struct {
 		meal:		 "Standard",
 		seating:  	 "Economy",
 		expected:	 true,
+		baggage:	 0,
 	},
 	{
 		description: "Glasgow Flight Spec",
-		input:		 "GLA 1 15 V E",
+		input:		 "GLA 2 15 V E",
 		location:	 "Glasgow",
 		age:		 15,
 		meal: 		 "Vegetarian",
 		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 true,
+		baggage:	 2,
+
 	},
 	{
 		description: "Spec of incorrect length GLA",
-		input:		 "GLA 1 15 V E",
+		input:		 "GLA 3 15 V E",
 		location:    "Glasgow",
 		age: 		 15,
 		meal:		 "Vegetarian",
 		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
+		baggage:	 3,
 	},
 	{
 		description: "Spec Location Incorrect",
-		input:		 "GLA 1 35 N E",
+		input:		 "GLA 5 35 N E",
 		location:    "London",
 		age:		 35,
 		meal:		 "None",
 		seating:	 "Economy",
 		length:	 	 11,
 		expected:	 false,
+		baggage:	 5,
 	},
 	{
 		description: "Negative age test",
-		input:		 "GLA 1 -1 V E",
+		input:		 "GLA 4 -1 V E",
 		location:    "Glasgow",
 		age:		 -1,
 		meal:		 "Vegetarian",
 		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
+		baggage:	 4,
 	},
 	{
 		description: "Vegetarian Meal test",
-		input:		 "GLA 1 50 V E",
+		input:		 "GLA 2 50 V E",
 		location:    "Glasgow",
 		age:		 50,
 		meal:	     "Vegetarian",
 		seating:  	 "Economy",
 		length:	 	 11,
 		expected:	 false,
+		baggage:	 2,
+
 	},
 	{
 		description: "No meal test",
@@ -80,6 +89,7 @@ var testCases = []struct {
 		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
+		baggage:	 1,
 	},
 	{
 		description: "Standard meal test",
@@ -90,6 +100,7 @@ var testCases = []struct {
 		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
+		baggage:	 1,
 	},
 	{
 		description: "Incorrect symbol for meal test",
@@ -100,6 +111,7 @@ var testCases = []struct {
 		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
+		baggage:	 1,
 	},
 	{
 		description: "Economy symbol for economy class seating test",
@@ -110,6 +122,7 @@ var testCases = []struct {
 		seating:  	 "Economy",
 		length:	 	 12,
 		expected:	 false,
+		baggage: 	 1,
 	},
 	{
 		description: "First class symbol for first class seating test",
@@ -120,9 +133,21 @@ var testCases = []struct {
 		seating:  	 "First Class",
 		length:	 	 12,
 		expected:	 false,
+		baggage:     1,
 	},
 	{
 		description: "Incorrect symbol for seating class",
+		input:		 "GLA 2 50 F D",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 12,
+		expected:	 false,
+		baggage: 	 2,
+	},
+	{
+		description: "One baggage for the customer",
 		input:		 "GLA 1 50 F D",
 		location:    "Glasgow",
 		age:		 50,
@@ -130,6 +155,18 @@ var testCases = []struct {
 		seating:  	 "This is not a valid class",
 		length:	 	 12,
 		expected:	 false,
+		baggage:	 1,
+	},
+	{
+		description: "No baggage for this customer",
+		input:		 "GLA 0 50 F D",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 12,
+		expected:	 false,
+		baggage:	 0,
 	},
 	
 	

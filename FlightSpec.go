@@ -73,3 +73,14 @@ func PassengerSeatClass(input string) string {
 	return "This is not a valid class"
 }
 
+// PassengerBaggage determines how much luggage a passenger has.
+func PassengerBaggage(input string) string {
+	NumBaggage := byte(input[4])
+	numofbaggage := int(NumBaggage)
+
+	if numofbaggage >= 0 && numofbaggage <= 9 {
+		return "This number of baggage is valid"
+	}
+
+	return "This number of baggage is invalid"
+}
