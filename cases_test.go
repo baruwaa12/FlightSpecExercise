@@ -11,6 +11,7 @@ var testCases = []struct {
 	expected 	bool
 	seating 	string
 	baggage 	int
+	spacing		bool
 }{
 	{	
 		description: "Amsterdam Flight Spec",
@@ -22,6 +23,7 @@ var testCases = []struct {
 		seating:  	 "Economy",
 		expected:	 true,
 		baggage:	 0,
+		spacing:	 true,
 	},
 	{
 		description: "Glasgow Flight Spec",
@@ -33,11 +35,12 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 true,
 		baggage:	 2,
+		spacing:	 true,
 
 	},
 	{
 		description: "Spec of incorrect length GLA",
-		input:		 "GLA 3 15 V E",
+		input:		 "GLA 3 15 VE",
 		location:    "Glasgow",
 		age: 		 15,
 		meal:		 "Vegetarian",
@@ -45,6 +48,8 @@ var testCases = []struct {
 		length:	 	 11,
 		expected:	 false,
 		baggage:	 3,
+		spacing:	 true,
+
 	},
 	{
 		description: "Spec Location Incorrect",
@@ -53,9 +58,11 @@ var testCases = []struct {
 		age:		 35,
 		meal:		 "None",
 		seating:	 "Economy",
-		length:	 	 11,
+		length:	 	 12,
 		expected:	 false,
 		baggage:	 5,
+		spacing:	 true,
+		
 	},
 	{
 		description: "Negative age test",
@@ -64,9 +71,11 @@ var testCases = []struct {
 		age:		 -1,
 		meal:		 "Vegetarian",
 		seating:  	 "Economy",
-		length:	 	 11,
+		length:	 	 12,
 		expected:	 false,
 		baggage:	 4,
+		spacing:	 true,
+
 	},
 	{
 		description: "Vegetarian Meal test",
@@ -75,9 +84,11 @@ var testCases = []struct {
 		age:		 50,
 		meal:	     "Vegetarian",
 		seating:  	 "Economy",
-		length:	 	 11,
+		length:	 	 12,
 		expected:	 false,
 		baggage:	 2,
+		spacing:	 true,
+
 
 	},
 	{
@@ -90,6 +101,8 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:	 1,
+		spacing:	 true,
+
 	},
 	{
 		description: "Standard meal test",
@@ -101,6 +114,8 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:	 1,
+		spacing:	 true,
+
 	},
 	{
 		description: "Incorrect symbol for meal test",
@@ -112,6 +127,7 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:	 1,
+		spacing:	 true,
 	},
 	{
 		description: "Economy symbol for economy class seating test",
@@ -123,6 +139,7 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage: 	 1,
+		spacing:	 true,
 	},
 	{
 		description: "First class symbol for first class seating test",
@@ -134,6 +151,7 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:     1,
+		spacing:	 true,
 	},
 	{
 		description: "Incorrect symbol for seating class",
@@ -145,6 +163,7 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage: 	 2,
+		spacing:	 true,
 	},
 	{
 		description: "One baggage for the customer",
@@ -156,6 +175,7 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:	 1,
+		spacing:	 true,
 	},
 	{
 		description: "No baggage for this customer",
@@ -167,6 +187,19 @@ var testCases = []struct {
 		length:	 	 12,
 		expected:	 false,
 		baggage:	 0,
+		spacing:	 true,
+	},
+	{
+		description: "No baggage for this customer",
+		input:		 "GLA 0 50 F D",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 12,
+		expected:	 false,
+		baggage:	 0,
+		spacing:	 true,
 	},
 	
 	

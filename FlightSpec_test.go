@@ -59,3 +59,12 @@ func TestPassengerBaggage(t * testing.T) {
 	}
 }
 
+func TestFlightSpecSpacing(t * testing.T) {
+	for _, test := range testCases {
+		if actual := (test.input); actual != test.baggage {
+			t.Fatalf("FAIL [%s]", test.description)
+		}
+		t.Logf("PASS: %s", test.description)
+	}
+}
+

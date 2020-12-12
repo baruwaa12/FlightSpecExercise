@@ -74,13 +74,13 @@ func PassengerSeatClass(input string) string {
 }
 
 // PassengerBaggage determines how much luggage a passenger has.
-func PassengerBaggage(input string) string {
-	NumBaggage := byte(input[4])
+func PassengerBaggage(input string) int {
+	NumBaggage, _  := strconv.Atoi(input[4:5])
 	numofbaggage := int(NumBaggage)
 
 	if numofbaggage >= 0 && numofbaggage <= 9 {
-		return "This number of baggage is valid"
+		return numofbaggage
 	}
 
-	return "This number of baggage is invalid"
+	return numofbaggage
 }
