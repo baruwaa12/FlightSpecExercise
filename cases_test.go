@@ -48,7 +48,7 @@ var testCases = []struct {
 		length:	 	 11,
 		expected:	 false,
 		baggage:	 3,
-		spacing:	 true,
+		spacing:	 false,
 
 	},
 	{
@@ -201,7 +201,42 @@ var testCases = []struct {
 		baggage:	 0,
 		spacing:	 true,
 	},
-	
+	{
+		description: "Incorrect number of spacing",
+		input:		 "GLA 050FD",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 9,
+		expected:	 false,
+		baggage:	 0,
+		spacing:	 false,
+	},
+	{
+		description: "Incorrect number of spacing T1",
+		input:		 "GLA 050FD",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 9,
+		expected:	 false,
+		baggage:	 0,
+		spacing:	 false,
+	},
+	{
+		description: "Incorrect number of spacing T2",
+		input:		 "GLA 050 FD",
+		location:    "Glasgow",
+		age:		 50,
+		meal: 		 "This symbol does not represent any meal",
+		seating:  	 "This is not a valid class",
+		length:	 	 10,
+		expected:	 false,
+		baggage:	 0,
+		spacing:	 false,
+	},
 	
 
 

@@ -84,3 +84,11 @@ func PassengerBaggage(input string) int {
 
 	return numofbaggage
 }
+
+// SpecSpacing makes sure the spec has the correct number of spaces
+func SpecSpacing(input string) bool {
+	if input[5] == ' ' && input[8] == ' ' && input[10] == ' ' {
+		return true
+	}
+	return false
+}
