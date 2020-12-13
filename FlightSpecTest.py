@@ -196,11 +196,21 @@ class FlightSpecTest(unittest.TestCase):
     
     def test_FinalCostTestAMSF(self):
         result = totalCost('AMS 0 25 S F')
-        self.assertEqual(result, 910.00, 'The final cost should be 910.00')
-
-    def test_FinalCostTestNotChildNoBagNoMealFC(self):
-        result = totalCost('AMS 0 25 N F')
         self.assertEqual(result, 900.00, 'The final cost should be 910.00')
+
+    def test_FinalCostTestNotChildNoBagNoMealFCAMS(self):
+        result = totalCost('AMS 0 25 N F')
+        self.assertEqual(result, 900.00, 'The final cost should be 900.00')
+
+    def test_FinalCostTestNotChildNoBagNoMealFCGLA(self):
+        result = totalCost('GLA 0 25 N F')
+        self.assertEqual(result, 480.00, 'The final cost should be 480.00')
+
+    def test_FinalCostTestChildNoMealFCAMS(self):
+        result = totalCost('AMS 0 14 N F')
+        self.assertEqual(result, 480.00, 'The final cost should be 480.00')
+
+    
 
 
         
