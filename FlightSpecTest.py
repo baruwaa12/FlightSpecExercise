@@ -16,7 +16,7 @@ from FlightSpec import getFlightCost
 from FlightSpec import getBaggageCosts
 from FlightSpec import getSeatingClass
 from FlightSpec import MealCost
-from FlightSpec import discounts
+from FlightSpec import TotalDiscounts
 from FlightSpec import totalCost
 
 class FlightSpecTest(unittest.TestCase):
@@ -179,15 +179,15 @@ class FlightSpecTest(unittest.TestCase):
         self.assertEqual(result, 12.00, 'The Meal Cost should be 12.00')
     
     def test_DiscountsChildEconomyAMS(self):
-        result = discounts('AMS 1 15 V E')
+        result = TotalDiscounts('AMS 1 15 V E')
         self.assertEqual(result, 77.50, 'The Flight cost should be 77.50')
 
     def test_ChildDiscountEconomyGLA(self):
-        result = discounts('GLA 1 15 V E')
+        result = TotalDiscounts('GLA 1 15 V E')
         self.assertEqual(result, 42.50, 'The Total discount cost should be 42.50')
 
     def test_NoChildDiscountEconomyGLA(self):
-        result = discounts('GLA 1 21 V E')
+        result = TotalDiscounts('GLA 1 21 V E')
         self.assertEqual(result, 0.00, 'The total discount should be 0.00')
     
     def test_FinalCostTestAMSE(self):
@@ -196,7 +196,7 @@ class FlightSpecTest(unittest.TestCase):
     
     def test_FinalCostTestAMSF(self):
         result = totalCost('AMS 0 25 S F')
-        self.assertEqual(result, 900.00, 'The final cost should be 910.00')
+        self.assertEqual(result, 900.00, 'The final cost should be 900.00')
 
     def test_FinalCostTestNotChildNoBagNoMealFCAMS(self):
         result = totalCost('AMS 0 25 N F')
@@ -208,7 +208,7 @@ class FlightSpecTest(unittest.TestCase):
 
     def test_FinalCostTestChildNoMealFCAMS(self):
         result = totalCost('AMS 0 14 N F')
-        self.assertEqual(result, 480.00, 'The final cost should be 480.00')
+        self.assertEqual(result, 450.00, 'The final cost should be 480.00')
 
     
 

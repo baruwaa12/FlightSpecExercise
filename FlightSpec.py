@@ -15,8 +15,6 @@ def isFirstThreeDigitsValid(flightSpec):
     return False
 
 # Validate fourth digit to be a space
-
-
 def isFourthDigitValid(flightSpec):
     fourth = flightSpec[3]
     if fourth == ' ':
@@ -122,50 +120,54 @@ def getDestination(flightSpec):
 global FlightCost
 
 # Function to check flight cost for either locations
-
-
 def getFlightCost(flightSpec):
-    if flightSpec[0:3] == "GLA":
+    if flightSpec[0:3] == "GLA" and int(flightSpec[6:7]) > 15:
         FlightCost = 80.00
         return FlightCost
-    if flightSpec[0:3] == "AMS":
+    if flightSpec[0:3] == "AMS" and int(flightSpec[6:7]) > 15:
         FlightCost = 150.00
+        return FlightCost
+    if flightSpec[0:3] == "GLA" and int(flightSpec[6:7]) <= 15:
+        FlightCost = 80.00 / 2
+        return FlightCost
+    if flightSpec[0:3] == "AMS" and int(flightSpec[6:7]) <= 15:
+        FlightCost = 150.00 / 2
         return FlightCost
     return -1
 
 # Function to calculate the baggage costs for a passengers number of bags
-
-
 def getBaggageCosts(flightSpec):
     if isFifthDigitValid(flightSpec) == True:
         totalBags = int(flightSpec[4])
+    if totalBags == 0:
+        BaggageCost = 0
+        return BaggageCost
     if totalBags > 0:
         BaggageCost = 20.00 * (totalBags - 1)
         return BaggageCost
 
     return 0.00
 
-# Function to calculate the appropriate discounts for a passenger
 
 
-def discounts(flightSpec):
+# Function to calculate the possible meal discounts for a passenger
+def MealDiscounts(flightSpec):
     if int(flightSpec[6:8]) <= 15 and flightSpec[11] == 'F':
-        flightDiscount = getFlightCost(flightSpec) / 2
         MealDiscount = MealCost(flightSpec)
-        TotalDiscount = flightDiscount + MealDiscount
     elif int(flightSpec[6:8]) <= 15 and flightSpec[11] == 'E':
-        flightDiscount = getFlightCost(flightSpec) / 2
         MealDiscount = 2.5
-        TotalDiscount = flightDiscount + MealDiscount
     elif int(flightSpec[6:8]) > 15 and flightSpec[11] == 'F':
         MealDiscount = MealCost(flightSpec)
-        TotalDiscount = MealDiscount
     elif int(flightSpec[6:8]) > 15 and flightSpec[11] == 'E':
-        TotalDiscount = 0
+        MealDiscount = 0
     
+    return MealDiscount
+
+def TotalDiscounts(flightSpec):
+    TotalDiscount = MealDiscounts(flightSpec)
     return TotalDiscount
 
-
+    
 # Function to calculate the meal costs
 def MealCost(flightSpec):
     if flightSpec[9] == 'N':
@@ -189,10 +191,10 @@ def getSeatingClass(flightSpec):
 
 def totalCost(flightSpec):
     if flightSpec[11] == 'F' :
-        finalCost = (getFlightCost(flightSpec)*6) + getBaggageCosts(flightSpec) + MealCost(flightSpec) - discounts(flightSpec)
+        finalCost = (getFlightCost(flightSpec)*6) + getBaggageCosts(flightSpec) + MealCost(flightSpec) - TotalDiscounts(flightSpec)
         return finalCost
     if flightSpec[11] == 'E':
-        finalCost = getFlightCost(flightSpec) + getBaggageCosts(flightSpec) + MealCost(flightSpec) - discounts(flightSpec)
+        finalCost = getFlightCost(flightSpec) + getBaggageCosts(flightSpec) + MealCost(flightSpec) - TotalDiscounts(flightSpec)
         return finalCost
 
 # Function to print the flight specfication in a organised format
